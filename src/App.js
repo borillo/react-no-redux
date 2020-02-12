@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { Container as Counter } from "./counter/container";
+import { Counter } from "./counter";
 
 const Container = () => {
   return (
