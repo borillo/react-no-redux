@@ -5,6 +5,12 @@ const initialState = {
   count: 0,
 }
 
+const incrementCount = dispatch => {
+  dispatch({
+    type: 'INCREMENT'
+  })
+}
+
 const counterReducer = (state, action) => {
   return {
     ...state,
@@ -12,12 +18,12 @@ const counterReducer = (state, action) => {
   }
 }
 
-const Counter = ({incrementCount, count}) => {
+const Counter = ({onIncrement, count}) => {
 
   return(
     <div>
       <h1>{count}</h1>
-      <button onClick={incrementCount}>Increment</button>
+      <button onClick={onIncrement}>Increment</button>
     </div>
   )
 }
@@ -28,20 +34,24 @@ const OutsideIncrement = ({incrementCount}) => {
   )
 }
 
+const useCounterContext = () => {
+  const [state, dispatch] = useReducer(counterReducer, initialState)
+  
+  return [state, dispatch]
+}
+
 const App = () => {
 
-  const [state, dispatch] = useReducer(counterReducer, initialState)
+  const [state, dispatch] = useCounterContext(counterReducer, initialState)
 
-  const incrementCount = () => {
-    dispatch({
-      type: 'INCREMENT'
-    })
+  const handleIncrement = () => {
+    incrementCount(dispatch)
   }
 
   return (
     <div className="App">
-      <Counter incrementCount={incrementCount} count={state.count}/>
-      <OutsideIncrement incrementCount={incrementCount}/>
+      <Counter onIncrement={handleIncrement} count={state.count}/>
+      <OutsideIncrement incrementCount={handleIncrement}/>
     </div>
   );
 }
