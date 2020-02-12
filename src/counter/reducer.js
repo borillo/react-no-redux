@@ -1,15 +1,22 @@
-import { INCREMENT } from "./actions";
+import { INCREMENT_START, INCREMENT_SUCCESS } from "./actions";
 
 const initialState = {
-  count: 0
+  count: 0,
+  isCalculating: false
 };
 
-const counterReducer = (state, action) => {
+const counterReducer = (state = initialState, action) => {
   switch (action.type) {
-    case INCREMENT:
+    case INCREMENT_START:
       return {
         ...state,
-        count: state.count + 1
+        isCalculating: true
+      };
+    case INCREMENT_SUCCESS:
+      return {
+        ...state,
+        count: state.count + 1,
+        isCalculating: false
       };
     default:
       return {

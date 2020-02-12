@@ -1,17 +1,14 @@
 import React from "react";
-import { Counter } from "./component";
-import { counterReducer, initialState } from "./reducer";
-import { incrementCount } from "./actions";
-import {useCounterContext} from './context'
+import { Counter, Loader} from "./components";
 
-const Container = () => {
-  const [state, dispatch] = useCounterContext(counterReducer, initialState);
+const Container = ({ onIncrement, isCalculating, ...props }) => {
 
-  const handleIncrement = () => {
-    incrementCount(dispatch);
-  };
-
-  return <Counter onIncrement={handleIncrement} count={state.count} />;
+  return (
+    <>
+      {isCalculating ? <Loader/> : <Counter {...props} />}
+      <button onClick={onIncrement}>Increment</button>
+    </>
+  );
 };
 
 export { Container };

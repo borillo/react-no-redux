@@ -1,3 +1,18 @@
-import {Container as Counter} from './container'
+import React from "react";
+import { Container } from "./container";
+import { incrementCount } from "./actions";
+import { useCounterContext } from "./context";
 
-export {Counter}
+const ConnectedCounter = () => {
+  const [state, dispatch] = useCounterContext();
+
+  const mapAllToProps = {
+    onIncrement: () => incrementCount(dispatch),
+    count: state.count,
+    isCalculating: state.isCalculating
+  };
+
+  return <Container {...mapAllToProps} />;
+};
+
+export { ConnectedCounter };

@@ -1,11 +1,11 @@
 import React from "react";
 import "./App.css";
-import { Counter } from "./counter";
+import { ConnectedCounter } from "./counter";
 
 const Container = () => {
   return (
     <div className="App">
-      <Counter />
+      <ConnectedCounter />
     </div>
   );
 };
