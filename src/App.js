@@ -1,11 +1,13 @@
 import React from "react";
 import "./App.css";
-import { ConnectedCounter } from "./counter";
+import { ConnectedCounter as Counter} from "./counter";
+import { ConnectedPeople as People } from './people'
 
 const Container = () => {
   return (
     <div className="App">
-      <ConnectedCounter />
+      <Counter />
+      <People />
     </div>
   );
 };
