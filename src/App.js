@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import { ConnectedCounter } from "./counter";
 
-const Container = () => {
+const App = () => {
   return (
     <div className="App">
       <ConnectedCounter />
@@ -10,4 +10,4 @@ const Container = () => {
   );
 };
 
-export default Container;
+export default App;
