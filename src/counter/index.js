@@ -35,7 +35,7 @@ const counterReducer = (state = initialState, action) => {
 function useCounter() {
   const [state, dispatch] = useReducer(counterReducer, initialState);
 
-  async function onIncrement() {
+  async function increment() {
     dispatch({ type: INCREMENT_START });
 
     await CounterService.costlyIncrement();
@@ -45,17 +45,17 @@ function useCounter() {
 
   return {
     ...state,
-    onIncrement
+    increment
   };
 }
 
 const ConnectedCounter = () => {
-  const { isCalculating, count, onIncrement } = useCounter();
+  const { isCalculating, count, increment } = useCounter();
 
   return (
     <>
       {isCalculating ? <Loader /> : <Counter count={count} />}
-      <button onClick={onIncrement}>Increment</button>
+      <button onClick={increment}>Increment</button>
     </>
   );
 };
